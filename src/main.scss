@@ -1,0 +1,15 @@
+//GLOBAL STYLES
+@import './styles/colors';
+@import './styles/fonts';
+@import './styles/base';
+@import './styles/mixins';
+
+//CONTAINERS
+@import './containers/layout';
+
+//COMPONENTES
+@import './components/Card/Card';
+@import './components/Header/Header';
+@import './components/Search/Search';
+@import './components/Hero/hero';
+@import './components/Filter/Filter';

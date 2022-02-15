@@ -1,0 +1,29 @@
+.header{
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $color--white;
+    padding-left:40px ;
+    padding-right: 40px;
+    &__logo{
+        height: 48px;
+        width: 48px;
+    }
+    &__option{ 
+        width: 273px;
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    @include small{
+        height: 128px;
+        flex-direction: column;
+        padding-bottom: 16px;
+        &__option{
+            width: 328px;
+        }
+    }
+}

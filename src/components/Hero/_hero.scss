@@ -1,0 +1,16 @@
+.hero{
+    height: 82px;
+    width: porcentaje(1200);
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include small{
+        height: 150px;
+        width: 100%;
+        p{
+            font-size: 14px;
+        }
+    }
+
+}

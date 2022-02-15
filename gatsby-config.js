@@ -8,11 +8,29 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
+    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Inter`,
+          `source sans pro\:400,500,700` // you can also specify font weights and styles
+        ],
+        display: 'swap'
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/src/assets/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `icons`,
+        path: `${__dirname}/src/assets/icons`,
       },
     },
     `gatsby-transformer-sharp`,

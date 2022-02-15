@@ -1,0 +1,71 @@
+$font: 'Inter';
+
+
+.caption{
+    //styleName: Caption/ 12 Bold;
+    font-family: $font;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    text-align: left;
+
+}
+.body-14-regular{
+    //styleName: Body/ 14 Regular;
+    font-family: $font;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.02em;
+    text-align: left;
+
+}
+.body-16-bold{
+    //styleName: Body/ 16 Bold;
+    font-family: $font;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    text-align: left;
+
+}
+.body-16{
+    //styleName: Body/16 Regular;
+    font-family: $font;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    text-align: left;
+
+}
+
+.medium-22{
+    //styleName: Subtitle/ 22 Medium;
+    font-family: $font;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px;
+    letter-spacing: 0.02em;
+    text-align: left;
+
+}
+
+.medium-22-bold{
+        //styleName: Subtitle/22 Bold;
+    font-family: $font;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0.02em;
+    text-align: left;
+
+}

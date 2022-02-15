@@ -1,0 +1,15 @@
+.search{ 
+    width: 233px;
+    background-image: url('assets/icons/search.svg');
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 11px;
+    height: 40px;
+    border-radius: 60px;
+    padding-left: 41px;
+    border: 1px solid rgba(101, 111, 126, 1);
+    color:rgba(251, 253, 255, 1);
+    @include small{
+        width: 288px;
+    }
+}
