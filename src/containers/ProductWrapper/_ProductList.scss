@@ -1,0 +1,15 @@
+.productList{
+    display: grid;
+	grid-template-columns: repeat(auto-fill,  30%);
+	gap: 24px;
+	margin-bottom: 30px;
+	animation: open 0.5s forwards linear;
+	@include small{
+		display: flex;
+        flex-direction: column;
+	}
+	@include tablet{
+		grid-template-columns: repeat(auto-fill,180px);
+		gap: 12px;
+	}
+}

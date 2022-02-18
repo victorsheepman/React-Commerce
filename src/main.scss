@@ -6,6 +6,7 @@
 
 //CONTAINERS
 @import './containers/layout';
+@import './containers/ProductWrapper/ProductList';
 
 //COMPONENTES
 @import './components/Card/Card';
@@ -13,3 +14,5 @@
 @import './components/Search/Search';
 @import './components/Hero/hero';
 @import './components/Filter/Filter';
+@import './components/Option/Option';
+@import './components/Drop/Drop';

@@ -10,4 +10,4 @@ export const Filter = () => {
         <li className='filter__item'>Vermudas</li>
     </ul>
   )
-}
+  }
