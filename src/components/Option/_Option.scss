@@ -14,4 +14,46 @@
     label{
         margin-left: 4px;
     }
+    &__filter{
+        display: none;
+    }
+    @include tablet{
+        justify-content: space-between;
+        p{
+            margin-left: 0;
+        }
+        &__filter{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 109px;
+            height: 40px;
+            border-radius: 30px;
+            border: 2px solid #000000;
+            background-color: $color--white;
+
+        }
+    }
+    @include small{
+        justify-content: space-between;
+        &__filter{
+            //display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 109px;
+            height: 40px;
+            border-radius: 30px;
+            border: 2px solid #000000;
+            background-color: $color--white;
+        }
+        svg{
+            margin-left: 0px;
+            width: 24px;
+            height: 24px;
+        }
+        p{
+            margin-left: 0;
+        }
+    }
 }

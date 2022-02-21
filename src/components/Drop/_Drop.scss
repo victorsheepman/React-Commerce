@@ -20,6 +20,12 @@
             background-color: $color--white;
         }
     }
+    @include tablet{
+        display: none;
+    }
+    @include small{
+        display: none;
+    }
 }
 
 .switch{

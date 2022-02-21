@@ -1,0 +1,93 @@
+.detail{
+    width: 100%;
+    height: 695px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    &__image{
+        height: 512px;
+        width: 384px;
+        //background-color: blue;
+    }
+}
+
+.sidebar{
+    height: 696px;
+    width: 409px;
+    //background-color: purple;   
+    margin-left: 30%; 
+    &__ruta{
+        color: $color--grey-4;
+    }
+    &__description{
+        width: 100%;
+        height: 62px;
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__colors{
+        height: 54px;
+        width: 264px;
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        div{
+            width: 100%;
+            height: 26px;      
+            display: flex;
+            justify-content: space-between;     
+        }
+    }
+    &__size{
+        height: 76px;
+        width: 384px;
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        div{
+            width: 100%;
+            height: 48px;
+            display: flex;
+            justify-content: space-between;
+        }
+        &__button{    
+            height: 48px;
+            width: 48px;
+            border-radius: 40px;
+            padding: 8px;
+            border: 1px solid $color--grey-3;
+            background-color: $color--white;
+            transition: 0.3s ease-in background-color;
+            //styleName: Body/16 Regular;
+            font-family: $font;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+            letter-spacing: 0.02em;
+            text-align: center;
+            &--black{
+                @extend .sidebar__size__button;
+                background-color: $color--black;
+                color: $color--white;
+                transition: 0.3s ease-in background-color;
+            }
+        }   
+    }
+    &__add{
+        height: 52px;
+        width: 384px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color--white;
+        border: none;
+        background-color: $color--green-2;
+        margin-top: 24px;
+    }
+}

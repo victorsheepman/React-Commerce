@@ -1,16 +1,16 @@
 import React from 'react';
-import { Image } from '../Image/Image';
+import { Link } from 'gatsby';
 
-export const Card = ({img, color}) => {
+export const Card = ({img, color, name, description, id}) => {
   return (
     <div className='card'>
         <figure className='card__image'>
-            <Image image={img} alt={'imagenn'} />
+            <img src={img} alt={'imagenn'} />
         </figure>
         <div className='card__body'>
-          <span className='card__body__title body-16-bold '>
-            Rojo
-          </span>
+          <Link to={`/${id}`} className='card__body__title body-16-bold '>
+            {name}
+          </Link >
           <section className='card__body__color'>
             <figure className='card__body__circle--first' style={{background: color}}></figure>
             <figure className='card__body__circle' style={{background:  'rgba(198, 44, 47, 1)' }}></figure>
@@ -22,7 +22,7 @@ export const Card = ({img, color}) => {
             <figure className='card__body__circle' style={{background:  'rgba(42, 100, 119, 1)'}}></figure>
           </section>
           <section className='card__body__footer'>
-            <span className='body-14-regular'>365 Signature sudadera con capucha </span><p className='body-16-bold'>$ 175 USA</p>
+            <span className='body-14-regular'>{description}</span><p className='body-16-bold'>$ 175 USA</p>
           </section>
         </div>
     </div>
