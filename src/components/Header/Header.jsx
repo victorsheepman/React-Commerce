@@ -1,11 +1,15 @@
 import  React from "react"
 import { Image } from "../Image/Image"
 import { Search } from "../Search/Search"
+import {Link} from 'gatsby'
 const Header = () => (
   <header className="header">
+    <Link to="/">
       <figure className="header__logo">
         <Image image={'logo.png'} alt='logo' />
       </figure>
+    </Link>
+      
       <div className="header__option">
         <Search />
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

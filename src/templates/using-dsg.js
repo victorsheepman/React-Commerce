@@ -6,7 +6,7 @@ const UsingDSG = ({pageContext}) =>(
   <>
     <Seo title={pageContext.product.name}/>
     <Header />
-    <Detail />
+    <Detail {...pageContext} />
   </>
 )
 
