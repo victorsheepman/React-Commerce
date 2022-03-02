@@ -1,10 +1,21 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { cartContext } from '../../context/cartContext'
 import priceFormat from '../../utils/priceFormat'
-export const Detail = ({price, product:{description, images, metadata}}) => {
+export const Detail = ({id, price, product:{description, images, metadata}}) => {
 //propiades y estdos del componente
   const [size, setSize] = useState(0)
   const usd = priceFormat(price)
   const {color} = metadata;
+  const  { addToCart } = useContext(cartContext);
+  const handleClick = () => {
+    addToCart({
+      des: description,
+      img: images[0],
+      usd: price,
+      ID:id
+
+    })
+  }
   return (
     <div className='detail'>
         <figure className='detail__image'>
@@ -43,7 +54,7 @@ export const Detail = ({price, product:{description, images, metadata}}) => {
               <button className={size == 7 ? 'sidebar__size__button--black' : 'sidebar__size__button'} onClick={() => setSize(7)}>XXL</button>
             </div>
           </section>
-          <button className='sidebar__add body-16'>
+          <button className='sidebar__add body-16' onClick={handleClick}>
             AÑADIR AL CARRITO
           </button>
           <section className='sidebar__body'>

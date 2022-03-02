@@ -1,18 +1,29 @@
-import React, { useState } from 'react'
-
-export const Item = () => {
-    const [quiantity, setQuantity] = useState(1)
+import React, { useContext, useState } from 'react'
+import priceFormat  from '../../utils/priceFormat';
+import { cartContext } from '../../context/cartContext';
+export const Item = ({description, image, price, id}) => {
+  const [quiantity, setQuantity] = useState(1);
+  const usd = priceFormat(price);
+  const { removeToCart } = useContext(cartContext)
   return (
     <article className='item'>
-        <figure  className='item__image'></figure>
+        <figure  className='item__image'>
+          <img src={image} alt="" />
+        </figure>
         <div  className='item__body'>
-            <h6 className='body-16'>365 Signature sudadera con capucha</h6>
-            <strong className='body-16-bold'>$175 USA</strong>
+            <h6 className='body-16'>{description}</h6>
+            <strong className='body-16-bold'>{usd}USA</strong>
             <div className='item__quantity'>
                 <button className='body-16' onClick={() => setQuantity(quiantity - 1)} disabled={quiantity <= 1}>-</button>
                 <p>{quiantity}</p>
                 <button className='body-16' onClick={() => setQuantity(quiantity + 1)}>+</button>
-            </div>        
+            </div>
+            <svg className='item__trash' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={()=> removeToCart(id)}>
+              <path d="M3 6H5H21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 11V17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 11V17" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
         </div>
     </article>
   )

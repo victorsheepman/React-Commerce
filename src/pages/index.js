@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby"
 import * as React from "react"
 import { Card } from "../components/Card/Card"
-
+import { Hero } from "../components/Hero/Hero"
 import Layout from "../containers/layout"
 import { ProductWrapper } from "../containers/ProductWrapper/ProductWrapper"
 const IndexPage = () => {
@@ -29,13 +29,14 @@ const IndexPage = () => {
     console.log(array.allStripePrice.edges);
   const products = array.allStripePrice.edges;
   return (
-  <Layout>
+  <>
+    <Hero />
     <ProductWrapper>
       {products.map((item) => (
         <Card key={item.node.id} id={item.node.id} img={item.node.product.images[0]} description={item.node.product.description} name={item.node.product.name} color={item.node.product.metadata.color}/>
       ))}
     </ProductWrapper>
-  </Layout>
+  </>
 )}
 
 export default IndexPage

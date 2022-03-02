@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Item } from '../Item/Item'
-
+import { cartContext } from '../../context/cartContext'
 export const Cart = ({show}) => {
+  const {cart} = useContext(cartContext);
+  console.log('cart', cart);
   return (
     <div className='cart'>
       <div className='cart__list'>
@@ -20,13 +22,11 @@ export const Cart = ({show}) => {
             </svg>
         </div>
         <div className='cart__item'>
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
+          {
+            cart.map((item)=>(
+              <Item key={item.ID} description={item.des} price={item.usd} image={item.img} id={item.ID}/>
+            ))
+          }
         </div>
         <button className='cart__buy body-16-bold' >
           Comprar
