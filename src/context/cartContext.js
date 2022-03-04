@@ -5,6 +5,7 @@ export const cartContext = createContext([]);
 
 export const Provider= ({children}) => {
     const [cart, setCart] = useState([]);
+    const [filter, setFilter] = useState('todo')
 
     const addToCart = (item) =>{
         const exit = cart.some(i => i.ID === item.ID);
@@ -23,9 +24,11 @@ export const Provider= ({children}) => {
     return (
         <cartContext.Provider value={{ 
             cart,
+            filter,
             addToCart,
             removeToCart,
-            total
+            total,
+            setFilter
         }}
         >
             {children}

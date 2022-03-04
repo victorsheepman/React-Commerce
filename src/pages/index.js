@@ -1,10 +1,12 @@
 import { graphql, useStaticQuery } from "gatsby"
-import * as React from "react"
+import React, {useContext} from "react"
 import { Card } from "../components/Card/Card"
 import { Hero } from "../components/Hero/Hero"
-import Layout from "../containers/layout"
 import { ProductWrapper } from "../containers/ProductWrapper/ProductWrapper"
+import { cartContext } from '../context/cartContext';
+import { useFilter } from "../Hooks/useFilter"
 const IndexPage = () => {
+  const {filter} = useContext(cartContext)
   const array = useStaticQuery(
     graphql`
     query GET_PRODUCT{
@@ -19,6 +21,7 @@ const IndexPage = () => {
               images
               metadata {
                 color
+                type
               }
             }
           }
@@ -26,8 +29,9 @@ const IndexPage = () => {
       }
     }`
   );
-    console.log(array.allStripePrice.edges);
-  const products = array.allStripePrice.edges;
+   
+  //const products = filter === 'todo' ? array.allStripePrice.edges : array.allStripePrice.edges.filter(i => i.node.product.metadata.type === 'fogazzi')
+  const products = useFilter(filter, array.allStripePrice.edges);
   return (
   <>
     <Hero />
