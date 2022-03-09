@@ -49,6 +49,10 @@
                 text-align: right;
             }
         }
+        &__title{
+            color:#000000;
+            text-decoration: none;
+        }
     }
 
     @include small{

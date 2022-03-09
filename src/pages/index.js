@@ -31,7 +31,6 @@ const IndexPage = () => {
     }`
   );
    
-  //const products = filter === 'todo' ? array.allStripePrice.edges : array.allStripePrice.edges.filter(i => i.node.product.metadata.type === 'fogazzi')
   const products = useFilter(filter, array.allStripePrice.edges);
   return (
   <>

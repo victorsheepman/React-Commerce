@@ -15,8 +15,8 @@ export const Filter = () => {
     <ul className='filter'>
         <li className={click ? 'filter__item' : 'filter__item--active'} onClick={selectAll}>Todo</li>
         <li className={click ? 'filter__item--active' : 'filter__item'} onClick={selectFogazzi}>Pulsera</li>
-        <li className='filter__item' onClick={() => setFilter('shirt')}>Sudadera</li>
-        <li className='filter__item'>Vermudas</li>
+        <li className='filter__item' onClick={() => setFilter('shirt')}>M-1</li>
+        <li className='filter__item'>M-2</li>
     </ul>
   )
   }
