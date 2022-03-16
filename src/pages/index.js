@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby"
 import React, {useContext} from "react"
 import { Card } from "../components/Card/Card"
+import { CheckoutForm } from "../components/CheckoutForm/CheckoutForm"
 import { Hero } from "../components/Hero/Hero"
 import { ProductWrapper } from "../containers/ProductWrapper/ProductWrapper"
 import { cartContext } from '../context/cartContext';
@@ -34,13 +35,14 @@ const IndexPage = () => {
   const products = useFilter(filter, array.allStripePrice.edges);
   return (
   <>
-    <Hero />
+   {/* <Hero />
     <ProductWrapper>
       {products.map((item) => (
         <Card key={item.node.id} price={item.node.price} id={item.node.id} img={item.node.product.images[0]} description={item.node.product.description} name={item.node.product.name} color={item.node.product.metadata.color}/>
       ))}
-    </ProductWrapper>
-  </>
+    </ProductWrapper>*/}
+    <CheckoutForm />
+      </>
 )}
 
 export default IndexPage

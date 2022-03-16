@@ -1,35 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { Item } from '../Item/Item'
 import { cartContext } from '../../context/cartContext'
-
-// Stripe
-import { loadStripe } from "@stripe/stripe-js";
-import { intToString } from '../../utils/toString';
-
-// Stripe Promise
-const stripePromise = loadStripe(process.env.STRIPE_PK);
-
+import { CheckoutForm } from '../CheckoutForm/CheckoutForm';
 export const Cart = ({show}) => {
   const {cart} = useContext(cartContext);
   
-  const handleClick = async (event) => {
-    event.preventDefault()
-    // Stripe Instantiate
-    const stripe = await stripePromise
-
-    // Redirect to checkout
-    const { error } = await stripe.redirectToCheckout({
-      lineItems: cart.map((item) => ({ price: item.usd,   quantity: 1,})),
-      mode: "payment",
-      cancelUrl: `${window.location.origin}/products`,
-      successUrl: `${window.location.origin}/thankyou`,
-    })
-    debugger;
-    if (error) {
-      alert('Hubo un error', error)
-    }
-  }
-
   return (
     <div className='cart'>
       <div className='cart__list'>
@@ -54,9 +29,10 @@ export const Cart = ({show}) => {
             ))
           }
         </div>
-        <button className='cart__buy body-16-bold' onClick={handleClick}>
+        {/*<button className='cart__buy body-16-bold' >
           Comprar
-        </button>
+        </button>*/}
+        <CheckoutForm />
       </div>
     </div>
   )
