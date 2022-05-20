@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import priceFormat  from '../../utils/priceFormat';
 import { cartContext } from '../../context/cartContext';
-export const Item = ({description, image, price, id}) => {
+export const Item = ({description, image, price, id, size}) => {
   const [quiantity, setQuantity] = useState(1);
   const usd = priceFormat(price);
   const { removeToCart } = useContext(cartContext)
@@ -13,10 +13,13 @@ export const Item = ({description, image, price, id}) => {
         <div  className='item__body'>
             <h6 className='body-16'>{description}</h6>
             <strong className='body-16-bold'>{usd}USA</strong>
-            <div className='item__quantity'>
+            {/*<div className='item__quantity'>
                 <button className='body-16' onClick={() => setQuantity(quiantity - 1)} disabled={quiantity <= 1}>-</button>
                 <p>{quiantity}</p>
                 <button className='body-16' onClick={() => setQuantity(quiantity + 1)}>+</button>
+            </div>*/}
+            <div className='item__quantity'>
+              <p>{size}</p>
             </div>
             <svg className='item__trash' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={()=> removeToCart(id)}>
               <path d="M3 6H5H21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

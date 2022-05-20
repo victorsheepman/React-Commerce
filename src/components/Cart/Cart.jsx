@@ -1,10 +1,23 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Item } from '../Item/Item'
 import { cartContext } from '../../context/cartContext'
 import { CheckoutForm } from '../CheckoutForm/CheckoutForm';
+
+//Stripe
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from "@stripe/stripe-js"
+import { amount } from '../../utils/amount';
+import priceFormat from '../../utils/priceFormat';
+
+const stripePromise = loadStripe('pk_test_51KTs7yAoNDNCJZ0XqfDFi5eAO1BFt0LE4q5vBTHq98NPi8tjrLcGWJMBsjtdezxL8UYM6GeNyxHVUmZQcg6TnFyI00dk0YwhlV')
+
+
 export const Cart = ({show}) => {
   const {cart} = useContext(cartContext);
-  
+  const usd = amount(cart);
+  const price = priceFormat(usd);
+  const ids = cart.map(i=>i.ID )
+  console.log('carrito', cart);
   return (
     <div className='cart'>
       <div className='cart__list'>
@@ -14,7 +27,7 @@ export const Cart = ({show}) => {
           </svg>
             <section>
               <h2 className='medium-22'>Carrito</h2>
-              <p className='body-16'>1 artículo - $ 175 USA</p>
+              <p className='body-16'>{cart.length} artículo - {price}</p>
             </section>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -25,14 +38,13 @@ export const Cart = ({show}) => {
         <div className='cart__item'>
           {
             cart.map((item)=>(
-              <Item key={item.ID} description={item.des} price={item.usd} image={item.img} id={item.ID}/>
+              <Item key={item.ID} description={item.des} price={item.usd} image={item.img} id={item.ID} size={item.Talla}/>
             ))
           }
         </div>
-        {/*<button className='cart__buy body-16-bold' >
-          Comprar
-        </button>*/}
-        <CheckoutForm />
+        <Elements stripe={stripePromise}>
+          <CheckoutForm total={usd} />
+        </Elements>
       </div>
     </div>
   )

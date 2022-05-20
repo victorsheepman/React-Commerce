@@ -1,54 +1,74 @@
-import React, { useState } from 'react'
-import {
-    Elements,
-    CardElement,
-    useStripe,
-    useElements,
-} from "@stripe/react-stripe-js";
+import React from "react"
+import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import axios from "axios"
+const MySwal = withReactContent(Swal)
 
-const stripePromise = loadStripe(process.env.STRIPE_);
+export const CheckoutForm = ({total}) => {
+//Hooks
+  const stripe = useStripe()
+  const elements = useElements()
 
-export const CheckoutForm = () => {
-    const stripe = useStripe()
-    const elements = useElements()
-    const [loading, setLoading] = useState(false)
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-          type: "card",
-          card: elements.getElement(CardElement),
-        });
-        setLoading(true);
-    
-        if (!error) {
-          // console.log(paymentMethod)
-          const { id } = paymentMethod;
-            try {
-                const { data } = await axios.post(
-                    "http://localhost:3001/api/checkout",
-                    {
-                        id,
-                        amount: 10000, //cents
-                    }
-                );
-                console.log(data);
-                elements.getElement(CardElement).clear();
-            } 
-            catch (error) {
-                console.log(error);
-            }
-          setLoading(false);
+//Principal function
+  const handleClick = async (e) =>{
+    e.preventDefault();
+    const {error , paymentMethod} = await stripe.createPaymentMethod({
+      type:'card',
+      card: elements.getElement(CardElement)
+    }) 
+    if(!error){
+      const { id } = paymentMethod;
+     
+      await axios.post('http://localhost:3001/api/checkout',{
+        id,
+        amount: total * 100
+      }) 
+      MySwal.fire({
+        title: <p>Hello World</p>,
+        footer: 'Copyright 2018',
+        icon:"success",
+        didOpen: () => {
+          // `MySwal` is a subclass of `Swal`
+          //   with all the same instance & static methods
+          MySwal.clickConfirm()
         }
-    };
+      }).then(() => {
+        return MySwal.fire(<p className='medium-22-bold'>Pago Realizado</p>)
+      })
+    }
+  }
   return (
-    <Elements stripe={stripePromise}>
-      <form className='checkoutForm' onSubmit={handleSubmit}>
-      
-      
+    <>
+      <form className='checkoutForm'  >
+        <label className='body-14' htmlFor="nombre">
+          Nombre
+        </label>
+        <input name="nombre" type="text" className='checkoutForm__input ' />
+        <label className='body-14' htmlFor="apellido">
+          Apellido
+        </label>
+        <input name="apellido" type="text" className='checkoutForm__input' />
+        <label className='body-14' htmlFor="direccion">
+          Direccion
+        </label>
+        <input name="direccion" type="text" className='checkoutForm__input ' />
+        <label className='body-14' htmlFor="email">
+          E-mail
+        </label>
+        <input name="email" type="email" className='checkoutForm__input ' />
+        <label className='body-14'>
+          Información de la tarjeta
+        </label>
+        <CardElement className='checkoutForm__input ' />
+        <label className='body-14' htmlFor="nombre_tarjeta">
+          Nombre en la tarjeta
+        </label>
+        <input name="nombre_tarjeta" type="text" className='checkoutForm__input ' />
+        <button className='checkoutForm__button body-16' onClick={handleClick}>
+          PAGAR AHORA
+        </button>
       </form>
-
-    </Elements>
+    </>
   )
 }

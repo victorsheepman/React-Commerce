@@ -17,6 +17,7 @@ exports.createPages = async ({graphql, actions }) => {
               images
               metadata {
                 color
+                size
               }
             }
           }

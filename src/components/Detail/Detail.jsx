@@ -3,17 +3,20 @@ import { cartContext } from '../../context/cartContext'
 import priceFormat from '../../utils/priceFormat'
 export const Detail = ({id, price, product:{description, images, metadata}}) => {
 //propiades y estdos del componente
-  const [size, setSize] = useState(0)
+  const [size, setSize] = useState('S')
   const usd = priceFormat(price)
   const {color} = metadata;
+  const talla = metadata.size;
+  const Sizes = talla.split(','); 
+  console.log(Sizes);
   const  { addToCart } = useContext(cartContext);
   const handleClick = () => {
     addToCart({
       des: description,
       img: images[0],
       usd: price,
-      ID:id
-
+      ID: id,
+      Talla: size
     })
   }
   return (
@@ -43,15 +46,11 @@ export const Detail = ({id, price, product:{description, images, metadata}}) => 
             </div>
           </section>
           <section className='sidebar__size'>
-          <h6 className='body-16'>Tamaño</h6>
+            <h6 className='body-16'>Tamaño</h6>
             <div>
-              <button className={size == 1 ? 'sidebar__size__button--black' : 'sidebar__size__button'} onClick={() => setSize(1)}>XXS</button>
-              <button className={size == 2 ? 'sidebar__size__button--black' : 'sidebar__size__button'} onClick={() => setSize(2)}>XS</button>
-              <button className={size == 3 ? 'sidebar__size__button--black' : 'sidebar__size__button'} onClick={() => setSize(3)}>S</button>
-              <button className={size == 4 ? 'sidebar__size__button--black' : 'sidebar__size__button'} onClick={() => setSize(4)}>M</button>
-              <button className={size == 5 ? 'sidebar__size__button--black' : 'sidebar__size__button'} onClick={() => setSize(5)}>L</button>
-              <button className={size == 6 ? 'sidebar__size__button--black' : 'sidebar__size__button'} onClick={() => setSize(6)}>XL</button>
-              <button className={size == 7 ? 'sidebar__size__button--black' : 'sidebar__size__button'} onClick={() => setSize(7)}>XXL</button>
+              {Sizes.map(item=>(
+                  <button key={item} className={size == item ? 'sidebar__size__button--black' : 'sidebar__size__button'} onClick={() => setSize(item)}>{item}</button>
+              ))}
             </div>
           </section>
           <button className='sidebar__add body-16' onClick={handleClick}>

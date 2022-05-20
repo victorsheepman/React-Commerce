@@ -18,6 +18,7 @@
         height: 100vh;
         background-color: $color--white;
         padding:40px;
+        overflow: scroll;
     }
     &__header{
         width: 100%;
